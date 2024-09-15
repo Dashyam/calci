@@ -69,15 +69,11 @@ class ResultPage extends StatelessWidget {
                 children: [
                   Container(
                     alignment: Alignment.center,
-                    height: 250,
+                    height: 215,
                     width: double.infinity,
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [Color.fromARGB(255, 229, 222, 210),Color.fromARGB(255, 139, 132, 121)]
-                        ),
+                      color: Color.fromARGB(255, 97, 87, 73),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Column(
@@ -97,16 +93,12 @@ class ResultPage extends StatelessWidget {
                   const SizedBox(height: 16),
 
                   Container(
-                    height: 250,
+                    height: 215,
                     width: double.infinity,
                     alignment: Alignment.center,
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [Color.fromARGB(255, 247, 199, 141),Color.fromARGB(255, 250, 171, 73)]
-                        ),
+                      color: Color.fromARGB(255, 97, 87, 73),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Column(
@@ -114,15 +106,15 @@ class ResultPage extends StatelessWidget {
                       children: [
                         const Text('New Tire Size',
                             style:
-                              TextStyle(fontSize: 28, fontWeight: FontWeight.bold)),
-                        Text('Width: $newWidth mm', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black)),
-                        Text('Aspect Ratio: $newAspectRatio %',style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black)),
-                        Text('Diameter: $newDiameter inch',style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black)),
+                              TextStyle(fontSize: 28, fontWeight: FontWeight.bold,color: Colors.white)),
+                        Text('Width: $newWidth mm', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
+                        Text('Aspect Ratio: $newAspectRatio %',style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
+                        Text('Diameter: $newDiameter inch',style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
                         Text(
-                          'Circumference: ${newCircumference.toStringAsFixed(2)} mm',style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black)),
+                          'Circumference: ${newCircumference.toStringAsFixed(2)} mm',style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
                         Text(
-                          'Sidewall Height: ${newSidewallHeight.toStringAsFixed(2)} mm',style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black)),
-                        Text('Revs per km: ${newRevsPerKm.toStringAsFixed(2)}',style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black)),
+                          'Sidewall Height: ${newSidewallHeight.toStringAsFixed(2)} mm',style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
+                        Text('Revs per km: ${newRevsPerKm.toStringAsFixed(2)}',style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
                       ],
                     ),
                   ),
@@ -130,14 +122,10 @@ class ResultPage extends StatelessWidget {
 
                   // Difference Box
                   Container(
-                    padding: EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(16),
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      gradient: const LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [Color.fromARGB(255, 144, 186, 251),Color.fromARGB(255, 32, 121, 255)]
-                        ),
+                      color:  Colors.blueAccent,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Column(

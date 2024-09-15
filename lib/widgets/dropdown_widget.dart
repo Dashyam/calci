@@ -16,9 +16,9 @@ class DropdownWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(label, style: TextStyle(color: const Color.fromARGB(255, 36, 36, 36), fontWeight: FontWeight.bold), ),
+        Text(label, style: const TextStyle(color:  Color.fromARGB(255, 36, 36, 36), fontWeight: FontWeight.bold,fontSize: 16), ),
        const SizedBox(height: 8),
         DropdownButtonFormField<int>(
           value: value,
