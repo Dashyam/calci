@@ -59,7 +59,7 @@ class _WheelSizeCalculatorScreenState extends State<WheelSizeCalculatorScreen> {
                       },
                     ),
                          ),
-                         SizedBox(width: 10),
+                         const SizedBox(width: 10),
                           Expanded(
                     child: DropdownWidget(
                       label: 'Aspect Ratio',
@@ -72,8 +72,8 @@ class _WheelSizeCalculatorScreenState extends State<WheelSizeCalculatorScreen> {
                       },
                     ),
                                     ),
-                                    SizedBox(width: 10),
-                                    Expanded(
+                    const SizedBox(width: 10),
+                    Expanded(
                     child: DropdownWidget(
                       label: 'Diameter',
                       value: oldDiameter,

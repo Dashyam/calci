@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:madhokenterprises/screens/tires.dart';
 
 class ResultPage extends StatelessWidget {
   final double oldWidth;
@@ -57,6 +58,20 @@ class ResultPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Result', style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
+        actions: [
+          IconButton(
+            onPressed: (){
+              Navigator.push(context, 
+              MaterialPageRoute(
+                builder: (context)=>Tires(
+                  oldWidth: oldWidth, 
+                  oldAspectRatio: oldAspectRatio, 
+                  oldDiameter: oldDiameter, 
+                  newWidth: newWidth, 
+                  newAspectRatio: newAspectRatio, 
+                  newDiameter: newDiameter)));
+            },
+        icon: const Icon(Icons.tire_repair))],      
       ),
       body: SingleChildScrollView(
         child: Padding(
