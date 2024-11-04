@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:madhokenterprises/screens/tires.dart';
+import 'package:madhokenterprises/widgets/tires2.dart';
 
 class ResultPage extends StatelessWidget {
   final double oldWidth;
@@ -35,8 +38,20 @@ class ResultPage extends StatelessWidget {
         circumference; // Revs per km = 1,000,000 / Circumference (in mm)
   }
 
+  double calculateOverallDiameter(double width, double aspectRatio, double diameter) {
+    double sidewallHeight = calculateSidewallHeight(width, aspectRatio);
+    double rimDiameterInMm = diameter * 25.4;
+    return (2 * sidewallHeight) + rimDiameterInMm;
+  }
+
   @override
   Widget build(BuildContext context) {
+    double oldTireDiameter = calculateOverallDiameter(oldWidth, oldAspectRatio, oldDiameter);
+    double newTireDiameter = calculateOverallDiameter(newWidth, newAspectRatio, newDiameter);
+
+    double oldRimDiameter = oldDiameter * 25.4;
+    double newRimDiameter = newDiameter * 25.4;
+
     double oldCircumference =
         calculateCircumference(oldWidth, oldAspectRatio, oldDiameter);
     double newCircumference =
@@ -57,21 +72,7 @@ class ResultPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Result', style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
-        actions: [
-          IconButton(
-            onPressed: (){
-              Navigator.push(context, 
-              MaterialPageRoute(
-                builder: (context)=>Tires(
-                  oldWidth: oldWidth, 
-                  oldAspectRatio: oldAspectRatio, 
-                  oldDiameter: oldDiameter, 
-                  newWidth: newWidth, 
-                  newAspectRatio: newAspectRatio, 
-                  newDiameter: newDiameter)));
-            },
-        icon: const Icon(Icons.tire_repair))],      
+        title: const Text('Result', style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),     
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -189,6 +190,17 @@ class ResultPage extends StatelessWidget {
                   ),
                 ],
               ),
+              // Tire Visualizer
+             Tires(
+              oldWidth: oldWidth, 
+              oldAspectRatio: oldAspectRatio, 
+              oldDiameter: oldDiameter, 
+              newWidth: newWidth, 
+              newAspectRatio: newAspectRatio, 
+              newDiameter: newDiameter),
+
+              const SizedBox(height: 5),
+
             ],
           ),
         ),

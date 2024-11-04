@@ -33,34 +33,51 @@ class Tires extends StatelessWidget {
   Widget build(BuildContext context) {
     double oldTireDiameter = calculateOverallDiameter(oldWidth, oldAspectRatio, oldDiameter);
     double newTireDiameter = calculateOverallDiameter(newWidth, newAspectRatio, newDiameter);
+    double maxDiameter = max(oldTireDiameter, newTireDiameter);
 
-    return Scaffold(
-      appBar: AppBar(title: Text("Tire Size Comparison")),
-      body: Center(
-        child: Row(
+
+    return Container(
+      padding: const EdgeInsets.all(5),
+              decoration:  BoxDecoration(
+                color: Colors.blueAccent,
+                gradient: const LinearGradient(colors: [Colors.blueAccent, Colors.white], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+                borderRadius: BorderRadius.circular(8),
+              ),
+                child:  Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CustomPaint(
-              size: Size(200, 200),
-              painter: TirePainter(
-                diameter: oldTireDiameter,
-                sidewallHeight: calculateSidewallHeight(oldWidth, oldAspectRatio),
-                rimDiameter: oldDiameter * 25.4,
-              ),
+            Column(
+              children: [
+                const Text('Old Tire',style: TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontWeight: FontWeight.bold, fontSize: 28),),
+                CustomPaint(
+                  size: const Size(180, 200),
+                  painter: TirePainter(
+                    diameter: oldTireDiameter,
+                    sidewallHeight: calculateSidewallHeight(oldWidth, oldAspectRatio),
+                    rimDiameter: oldDiameter * 25.4,
+                    maxDiameter: maxDiameter
+                  ),
+                ),
+              ],
             ),
             const SizedBox(width: 25),
-            CustomPaint(
-              size: Size(200, 200),
-              painter: TirePainter(
-                diameter: newTireDiameter,
-                sidewallHeight: calculateSidewallHeight(newWidth, newAspectRatio),
-                rimDiameter: newDiameter * 25.4,
-              ),
+            Column(
+              children: [
+                const Text('New Tire',style: TextStyle(color: Color.fromARGB(255, 0, 0, 0), fontWeight: FontWeight.bold, fontSize: 28),),
+                CustomPaint(
+                  size: Size(180, 200),
+                  painter: TirePainter(
+                    diameter: newTireDiameter,
+                    sidewallHeight: calculateSidewallHeight(newWidth, newAspectRatio),
+                    rimDiameter: newDiameter * 25.4,
+                    maxDiameter: maxDiameter
+                  ),
+                ),
+              ],
             ),
           ],
-        ),
-      ),
-    );
+        )
+              );
   }
 }
 
@@ -68,11 +85,13 @@ class TirePainter extends CustomPainter {
   final double diameter;
   final double sidewallHeight;
   final double rimDiameter;
+  final double maxDiameter;
 
   TirePainter({
     required this.diameter,
     required this.sidewallHeight,
     required this.rimDiameter,
+    required this.maxDiameter,
   });
 
   @override
@@ -82,11 +101,11 @@ class TirePainter extends CustomPainter {
     final sidewallRadius = overallRadius - sidewallHeight / 2;
     final rimRadius = rimDiameter / 2;
 
-    double scaleFactor = size.width / (overallRadius * 2);
+   final scaleFactor = size.width / maxDiameter;
 
     // Outer Tire with radial gradient for curvature
     final tirePaint = Paint()
-      ..shader = RadialGradient(
+      ..shader = const RadialGradient(
         colors: [Colors.black, Colors.black87, Colors.black54],
         stops: [0.6, 0.8, 1.0],
       ).createShader(Rect.fromCircle(center: center, radius: overallRadius * scaleFactor))
@@ -95,7 +114,7 @@ class TirePainter extends CustomPainter {
 
     // Sidewall with darker gradient to create depth
     final sidewallPaint = Paint()
-      ..shader = RadialGradient(
+      ..shader = const RadialGradient(
         colors: [Colors.black, Colors.black87],
         stops: [0.7, 1.0],
       ).createShader(Rect.fromCircle(center: center, radius: overallRadius * scaleFactor))
