@@ -1,8 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:madhokenterprises/screens/tires.dart';
-import 'package:madhokenterprises/widgets/tires2.dart';
+import 'package:madhokenterprises/screens/visualizer.dart';
 
 class ResultPage extends StatelessWidget {
   final double oldWidth;
@@ -72,8 +71,8 @@ class ResultPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Result', style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),     
-      ),
+        title: const Text('Result', style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),   
+        ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -83,6 +82,19 @@ class ResultPage extends StatelessWidget {
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 children: [
+                  Container(
+              padding: const EdgeInsets.all(8),
+             
+              child: TireVisual(
+                oldWidth: oldWidth,
+                oldAspectRatio: oldAspectRatio,
+                oldDiameter: oldDiameter,
+                newWidth: newWidth,
+                newAspectRatio: newAspectRatio,
+                newDiameter: newDiameter,
+              ),
+            ),
+            const SizedBox(height: 16),
                   Container(
                     alignment: Alignment.center,
                     height: 215,
@@ -171,17 +183,17 @@ class ResultPage extends StatelessWidget {
                               fontWeight: FontWeight.bold
                             )),
                         Text(
-                            'Percentage Change in Circumference: ${((circumferenceDifference / oldCircumference) * 100).toStringAsFixed(2)}%', style: const TextStyle(
+                            'Change in Circumference: ${((circumferenceDifference / oldCircumference) * 100).toStringAsFixed(2)}%', style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold
                             )),
                         Text(
-                            'Percentage Change in Sidewall Height: ${((sidewallHeightDifference / oldSidewallHeight) * 100).toStringAsFixed(2)}%', style: const TextStyle(
+                            'Change in Sidewall Height: ${((sidewallHeightDifference / oldSidewallHeight) * 100).toStringAsFixed(2)}%', style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold
                             )),
                         Text(
-                            'Percentage Change in Revs per km: ${((revsPerKmDifference / oldRevsPerKm) * 100).toStringAsFixed(2)}%', style: const TextStyle(
+                            'Change in Revs per km: ${((revsPerKmDifference / oldRevsPerKm) * 100).toStringAsFixed(2)}%', style: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold
                             )),
@@ -190,16 +202,6 @@ class ResultPage extends StatelessWidget {
                   ),
                 ],
               ),
-              // Tire Visualizer
-             Tires(
-              oldWidth: oldWidth, 
-              oldAspectRatio: oldAspectRatio, 
-              oldDiameter: oldDiameter, 
-              newWidth: newWidth, 
-              newAspectRatio: newAspectRatio, 
-              newDiameter: newDiameter),
-
-              const SizedBox(height: 5),
 
             ],
           ),
